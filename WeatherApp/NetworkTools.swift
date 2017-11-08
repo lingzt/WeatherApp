@@ -20,7 +20,6 @@ class NetworkTools: NSObject {
     static func fetchCityInfor(_ location: String, completionHandler: @escaping (CityInfor) -> ()) {
         
         let urlString = "http://api.wunderground.com/api/c0e05755af646c85/conditions/q/"
-        
         guard let url = URL(string: urlString + location + ".json") else {
             completionHandler(CityInfor(current_observation: WeatherConditions(temperature_string: "Temperature Unavailable")))
             return
@@ -31,7 +30,6 @@ class NetworkTools: NSObject {
                 print(error)
                 return
             }
-            
             do {
                 guard let data = data else {
                     print("no data received")
@@ -42,11 +40,9 @@ class NetworkTools: NSObject {
                 DispatchQueue.main.async(execute: { () -> Void in
                     completionHandler(cityInfor)
                 })
-                
             } catch let error{
                 print(error)
             }
-            
         }) .resume()
     }
 }

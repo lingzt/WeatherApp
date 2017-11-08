@@ -20,8 +20,7 @@ class ViewController: UIViewController , CLLocationManagerDelegate{
     var apiParam = String() {
         didSet {
             updateWeather(location: apiParam)
-        }
-        
+        }  
     }
     
     override func viewDidLoad() {
@@ -48,13 +47,13 @@ class ViewController: UIViewController , CLLocationManagerDelegate{
     func updateLocation(from placemark: CLPlacemark) {
         
         guard let locality = placemark.locality, let administrativeArea = placemark.administrativeArea else {
-             self.cityLabel.text = "can not locate user"
+            self.cityLabel.text = "can not locate user"
+            self.weatherLabel.text =  "Temperature Unavailable"
             return
         }
             cityLabel.text = "\(locality),  \(administrativeArea)"
             let str = "\(administrativeArea)/\(locality)"
             apiParam = str.replacingOccurrences(of: " ", with: "_")
-        
     }
     
     func updateWeather(location: String) {
@@ -64,13 +63,6 @@ class ViewController: UIViewController , CLLocationManagerDelegate{
             self.weatherLabel.text = cityInfor.current_observation.temperature_string
             }
         }
-        
     }
-    
-    
-    
-    
-
-
 }
 
