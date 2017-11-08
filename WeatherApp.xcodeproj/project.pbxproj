@@ -12,6 +12,7 @@
 		147B78F11FB2901600A11102 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147B78EF1FB2901600A11102 /* Main.storyboard */; };
 		147B78F31FB2901600A11102 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 147B78F21FB2901600A11102 /* Assets.xcassets */; };
 		147B78F61FB2901600A11102 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 147B78F41FB2901600A11102 /* LaunchScreen.storyboard */; };
+		147B79021FB316A700A11102 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 147B79011FB316A700A11102 /* NetworkTools.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		147B78F21FB2901600A11102 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		147B78F51FB2901600A11102 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		147B78F71FB2901600A11102 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		147B79011FB316A700A11102 /* NetworkTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				147B78EB1FB2901600A11102 /* AppDelegate.swift */,
 				147B78ED1FB2901600A11102 /* ViewController.swift */,
+				147B79011FB316A700A11102 /* NetworkTools.swift */,
 				147B78EF1FB2901600A11102 /* Main.storyboard */,
 				147B78F21FB2901600A11102 /* Assets.xcassets */,
 				147B78F41FB2901600A11102 /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			files = (
 				147B78EE1FB2901600A11102 /* ViewController.swift in Sources */,
 				147B78EC1FB2901600A11102 /* AppDelegate.swift in Sources */,
+				147B79021FB316A700A11102 /* NetworkTools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +281,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TM264FVPQ8;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Ling.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TM264FVPQ8;
 				INFOPLIST_FILE = WeatherApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Ling.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
