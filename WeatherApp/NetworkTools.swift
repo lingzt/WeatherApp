@@ -33,7 +33,8 @@ class NetworkTools: NSObject {
             }
             do {
                 guard let data = data else {
-                    print("no data received")
+                    let weather = WeatherConditions(temperature_string: "Temperature Unavailable")
+                    completionHandler(CityInfor(current_observation:weather ))
                     return
                 }
                 let decoder = JSONDecoder()
