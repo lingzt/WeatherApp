@@ -15,8 +15,14 @@ class ViewController: UIViewController , CLLocationManagerDelegate{
     @IBOutlet weak var weatherLabel: UILabel!
     
     let locationManager = CLLocationManager()
-    var geoCoder : CLGeocoder = CLGeocoder()
+    var geoCoder: CLGeocoder = CLGeocoder()
     var cityInfor: CityInfor?
+    var apiParam = String() {
+        didSet {
+            updateWeather(location: apiParam)
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,33 +33,38 @@ class ViewController: UIViewController , CLLocationManagerDelegate{
         weatherLabel.text = "Temperature Information"
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        NetworkTools.fetchCityInfor{ (cityInfor) -> () in
-            self.cityInfor = cityInfor
-            self.weatherLabel.text = cityInfor.current_observation.temperature_string
-        }
-    }
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let location = locations[0]
         geoCoder.reverseGeocodeLocation(location) { (placemarks, _) in
             guard let placemark = placemarks?.first else {
-                self.cityLabel.text = "Could not receive your location information"
+                self.cityLabel.text = "can not locate user"
                 return
             }
-            let apiParam = self.updateLocation(from: placemark)
+            self.updateLocation(from: placemark)
         }
     }
     
-    func updateLocation(from placemark: CLPlacemark) -> String {
-        var apiParam = ""
+    func updateLocation(from placemark: CLPlacemark) {
         
-        if let locality = placemark.locality, let administrativeArea = placemark.administrativeArea {
-            cityLabel.text = "\(locality),  \(administrativeArea)"
-            apiParam = "\(locality)/\(administrativeArea)"
+        guard let locality = placemark.locality, let administrativeArea = placemark.administrativeArea else {
+             self.cityLabel.text = "can not locate user"
+            return
         }
-        return apiParam
+            cityLabel.text = "\(locality),  \(administrativeArea)"
+            let str = "\(administrativeArea)/\(locality)"
+            apiParam = str.replacingOccurrences(of: " ", with: "_")
+        
+    }
+    
+    func updateWeather(location: String) {
+        if apiParam != String(){
+            NetworkTools.fetchCityInfor(location){ (cityInfor) -> () in
+            self.cityInfor = cityInfor
+            self.weatherLabel.text = cityInfor.current_observation.temperature_string
+            }
+        }
+        
     }
     
     
