@@ -21,7 +21,8 @@ class NetworkTools: NSObject {
         
         let urlString = "http://api.wunderground.com/api/c0e05755af646c85/conditions/q/"
         guard let url = URL(string: urlString + location + ".json") else {
-            completionHandler(CityInfor(current_observation: WeatherConditions(temperature_string: "Temperature Unavailable")))
+            let weather = WeatherConditions(temperature_string: "Temperature Unavailable")
+            completionHandler(CityInfor(current_observation:weather ))
             return
         }
 
