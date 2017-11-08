@@ -17,14 +17,16 @@ struct WeatherConditions: Decodable {
 }
 
 class NetworkTools: NSObject {
-    static func fetchCityInfor(_ completionHandler: @escaping (CityInfor) -> ()) {
+    static func fetchCityInfor(_ location: String, completionHandler: @escaping (CityInfor) -> ()) {
         
-        let urlString = "http://api.wunderground.com/api/c0e05755af646c85/conditions/q/CA/San_Francisco.json"
+        let urlString = "http://api.wunderground.com/api/c0e05755af646c85/conditions/q/"
         
-        let url = URL(string: urlString);
-        let request = URLRequest(url: url!);
-        
-        URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) -> Void in
+        guard let url = URL(string: urlString + location + ".json") else {
+            completionHandler(CityInfor(current_observation: WeatherConditions(temperature_string: "Temperature Unavailable")))
+            return
+        }
+
+        URLSession.shared.dataTask(with:url, completionHandler: { (data, response, error) -> Void in
             if let error = error {
                 print(error)
                 return
